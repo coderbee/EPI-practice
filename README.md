@@ -1,2 +1,6 @@
 # EPI-MarApr2022
 EPI practice. Attempt to finish 300 by April 2022 end
+
+Notes : 
+Initialization in a for/if/switch statement 
+https://mariusbancila.ro/blog/2021/03/23/initializing-statement-for-if-switch-foreach/

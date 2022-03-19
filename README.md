@@ -8,3 +8,4 @@ Notes :
 Exception types in C++ standard library
 ![Exception types in C++ standard library](https://flylib.com/books/2/253/1/html/2/images/16fig11.jpg) 
 
+[Template specialization template <>](https://www.youtube.com/watch?v=ZUaBQk6-x0U)

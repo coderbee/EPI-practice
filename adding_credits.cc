@@ -60,5 +60,20 @@ class ClientCreditsInfo {
   private:
     int offset_ = 0; 
     unordered_map<string, int> client_to_credit_;
-    map<int, 
+    map<int, unordered_set<string>> credit_to_clients_;
+};
+
+struct Operation {
+  std::string op;
+  std::string s_arg;
+  int i_arg;
+};
+
+std::ostream& operator <<(std::ostream& out, const Operation& op) {
+  return out << FmtStr("{}({},{})", op.op, op.s_arg, op.i_arg);
+}
+
+namespace test_framework {
+  tempalate <>
+    
   

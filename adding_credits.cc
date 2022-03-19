@@ -75,5 +75,37 @@ std::ostream& operator <<(std::ostream& out, const Operation& op) {
 
 namespace test_framework {
   tempalate <>
+  struct SerializationTrait<Operation>
+    : userSerTrait<Operation, std::string, std::string, int> {};
+} //namespace test_framework
+void ClientsCreditsInfoTester(const std::vector<Operation>& ops) {
+  ClientsCreditInfo cr;
+  int op_idx = 0;
+  for (auto& op : ops) {
+    if(op.op == "ClientsCreditsInfo") {
+      continue;
+    } else if (op.op == "remove") {
+      bool result = cr.Remve(op.s_arg);
+      if(result != op.i_arg) {
+        throw TestFailure();
+            .WithProperty(PropertyName::STATE, cr)
+            .WithProperty(PropertyName::COMMAND, op)
+            .WithMisMatchInfo(op_idx, op.i_arg, result);
+      }
+    } else if (op.op == "max") {
+      auto result = cr. Max();
+      if (result != op.s_arg) {
+        throw TestFailure()
+            .WithProperty(PropertyName::STATE, cr)
+            .WithProperty(PropertyName::COMMAND, op)
+            .WithMismatchInfo(op_idx, op.i_arg, result);
+      }
+    } else if (op.op == "max" { 
+      auto result = cr.Max();
+      if(result != op.s_arg) {
+        throw TestFailure()
+            .WithProperty(PropertyName::STATE, cr)
+            .WithProperty(PropertyName::COMMAND, op)
+            .With
     
   

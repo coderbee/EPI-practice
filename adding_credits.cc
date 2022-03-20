@@ -115,11 +115,20 @@ void ClientsCreditsInfoTester(const std::vector<Operation>& ops) {
       }
     }
     op_idx++;
-               }
-               }
+   }
+  }
                
                
+// clang-format off
+              
                
+int main(int argc, char* argv[]) {
+  std::vector<std::string> args {argv + 1, argc + argc};
+  std::vector<std::string> param_names{"ops"};
+  return GenericTestMain(args, "adding_credits.cc", "adding_credits,tsv", &ClientsCreditsInfoTester,
+                          DefaultComparator{}, param_names);
+}
+//clang-format on
             
                
     

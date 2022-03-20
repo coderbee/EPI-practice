@@ -100,12 +100,26 @@ void ClientsCreditsInfoTester(const std::vector<Operation>& ops) {
             .WithProperty(PropertyName::COMMAND, op)
             .WithMismatchInfo(op_idx, op.i_arg, result);
       }
-    } else if (op.op == "max" { 
-      auto result = cr.Max();
-      if(result != op.s_arg) {
+    } else if (op.op == "insert" {
+        cr.Insert(op.s_arg, op.i_arg);
+    } else if (op.op == "add_all") {
+      cr.AddAll(op.i_arg);
+    } else if (op.op == "lookup" {
+      auto result = cr.Lookup(op.s_arg);
+      if (result != op.i_arg) {
         throw TestFailure()
-            .WithProperty(PropertyName::STATE, cr)
-            .WithProperty(PropertyName::COMMAND, op)
-            .With
+          .WithProperty(PropertyName::STATE, cr)
+          .WithProperty(PropertyName::COMMAND, op)
+          .WithMismatchInfo(op_idx, op.i_arg, result);
+        ;
+      }
+    }
+    op_idx++;
+               }
+               }
+               
+               
+               
+            
+               
     
-  

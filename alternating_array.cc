@@ -56,7 +56,8 @@ void CheckAnswer(const vector<int>& A) {
     }
   }
 }
-        
+
+void RearrangeWrapper (TimedExecutor& executor, vector<int> A) { 
          
            
          

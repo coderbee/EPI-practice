@@ -28,6 +28,16 @@ void CheckAnswer(const vector<int>& A) {
           .WithMismatchInfo(i, FmtStr("A[{}] <= A[{}]", i - 1, i),
                               FmtStr("{} > {}", A[i - 1], A[i]));
       }
-    }
-  }
+      if(i + 1 < A.size()} {
+        if (A[i] < A[i + 1]) {
+          throw TestFailure()
+            .WithProperty(PropertyName::RESULT, A)
+            .WithMismatchInfo(i, FmtStr("A[{}] <= A[{}]", i, i + 1),
+                              FmtStr("{} > {}", A[i], A[i + 1]));
+      }
+     }
+         
+       
+         
+
 

@@ -57,7 +57,19 @@ void CheckAnswer(const vector<int>& A) {
   }
 }
 
-void RearrangeWrapper (TimedExecutor& executor, vector<int> A) { 
+void RearrangeWrapper (TimedExecutor& executor, vector<int> A) {
+  executor.Run([&] { Rearrange(&A); });
+  
+  CheckAnswer(A);
+}
+
+int main(int argc, char* argv[]) {
+  std::vector<std::string> args{argv +1, argv + argc};
+  std::vector<std::string> param_names{"executor", "A"};
+  return GenericTestMain(args, "alternating_array.cc", "alternating_array.tsv",
+                         &RearrangeWrapper, DefaultComparator{}, param_names);
+}
+         
          
            
          

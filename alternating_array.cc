@@ -36,6 +36,29 @@ void CheckAnswer(const vector<int>& A) {
                               FmtStr("{} > {}", A[i], A[i + 1]));
       }
      }
+    } else {
+      if(i > 0) {
+        if (A[i - 1] < A[i]) {
+          throw TestFailure()
+              .WithProperty(PropertyName::RESULT, A)
+              .WithMismatchInfo(i, FmtStr("A[{}] >= A[{}]", i - 1, i),
+                                FmtStr("{} < {}", A[i - 1], A[i]));
+        }
+      }
+      if (i + 1 < A.size()) {
+        if (A[i + 1] < A[i]) {
+          throw TestFailure()
+              .WithProperty(PropertyName::RESULT, A)
+              .WithMismatchInfo(i, FmtStr("A[{}] <= A[{}]", i, i + 1),
+                                FmtStr("{} > {}", A[i], A[i + 1]));
+        }
+      }
+    }
+  }
+}
+        
+         
+           
          
        
          

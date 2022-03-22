@@ -20,7 +20,7 @@ vector<vector<string>> FindingAnagrams(const vector<string>& dictionary) {
   vector<vector<string>> anagram_groups;
   for(const auto& [key, group] : sorted_string_to_anagrams) {
     if(size(group) >= 2) { //Found anagrams.
-      anagram_groups.emplace_bacj(group);
+      anagram_groups.emplace_back(group);
     }
   }
   return anagram_groups;

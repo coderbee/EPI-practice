@@ -14,4 +14,8 @@ void ApplyPermutation(vector<int> perm, vector<int>* A_Ptr) {
   }
 }
 
-          
+vector<int> ApplyPermutationWrapper (const vector<int>* perm, vector<int> A) {
+  ApplyPermutation(perm, &A);
+  return A;
+}
+           

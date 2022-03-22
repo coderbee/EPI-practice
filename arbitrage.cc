@@ -23,3 +23,33 @@ bool BellmanFord(const vector<vector<double>>& graph, int source) {
   vector<double> dis_to_source(size(graph), numeric_limits<double>::infinity());
   dis_to_source[source] = 0;
   
+  for(int times = 1; times < size(graph); ++times){
+    bool have_update = false;
+    for(int i = 0; i < size(graph); ++i) {
+      for (int j = 0; j < size(graph[i]); ++j) {
+        of(dis_to_source[i] != numeric_limits<duoble>::infinity() &&
+           dis_to_source[j] > dis_to_source[i] + graph[i][j]) {
+          have_update = true;
+          dis_to_source[j] = dis_to_source[i] + graph[i][j];
+        }
+      }
+    }
+    
+    //No update in this iteration means no negative cycle
+    if(have_update == false) {
+      return false;
+    }
+  }
+  
+  //Detects cycle if there is any further update
+  for(int i = 0; i< size(graph); ++i) {
+    for(int j = 0; j < size(graph[i]); ++j) {
+      of(dis_to_source[i] != numeric_limits<double>::infinity() &&
+         dis_to_source[j] > dis_to_source[i] + graph[i][j] {
+           return true;
+         }
+     }
+  }
+  return false;
+}
+  

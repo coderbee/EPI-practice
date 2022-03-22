@@ -14,4 +14,16 @@ vector<vector<string>> FindingAnagrams(const vector<string>& dictionary) {
     //the original string as another value into hash table.
     srting sorted_str(s);
     sort(begin(sorted_str), end(sorted_str));
+    sorted_string_to_anagrams[sorted_str].emplace_back(s);
+  }
+  
+  vector<vector<string>> anagram_groups;
+  for(const auto& [key, group] : sorted_string_to_anagrams) {
+    if(size(group) >= 2) { //Found anagrams.
+      anagram_groups.emplace_bacj(group);
+    }
+  }
+  return anagram_groups;
+}
+
     

@@ -65,4 +65,32 @@ shared_ptr<BstNode<int>> BSTToDoublyListHelper(
   shared_ptr<BstNode<int>> r_tail = nullptr;
   if(r_head) {
     r_tail = r_head->left;
+    l_tail->right = r_head;
+    r_head->left = l_tail;
+  } else {
+    r_tail = l_tail;
+  }
+  r_tail->right = l_head, l_head->left = r_tail;
+  
+  return l_head;
+}
+
+//Count the list length till end.
+int CountLength(shared_ptr<BstNode<int>> L ) {
+  int length = 0;
+  while (L) {
+    ++length, L = L->right;
+  }
+  return length;
+}
+
+shared_ptr<BstNode<int>> MergeTwoBSTs(shared_ptr<BstNode<int>> A,
+                                      shared_ptr<BstNode<int>> B) {
+  A = BSTToDoublyList(A), B = BSTToDoublyList(B);
+  int A_length = CountLength(A), B_length = CountLength(B);
+  return BuildBSTFromSortedDoublyList(MergeTwoSortedLists(A, B),
+                                      A_Length + B_Length);
+}
+
+//Merges two sorted doubly linked lists, returns the head of the merged list.
     

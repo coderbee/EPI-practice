@@ -61,5 +61,8 @@ shared_ptr<BstNode<int>> BSTToDoublyListHelper(
     l_head = l_tail = n;
   }
   
-  //APpend the list from the right subtree to n.
-  
+  //Append the list from the right subtree to n.
+  shared_ptr<BstNode<int>> r_tail = nullptr;
+  if(r_head) {
+    r_tail = r_head->left;
+    

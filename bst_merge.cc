@@ -47,4 +47,19 @@ shared_ptr<BstNode<int>> BSTToDoublyListHelper(
   }
   
   //Recursively build the list from left and right subtrees.
-  auto l_head(BSTToDoublyListHelper
+  auto l_head(BSTToDoublyListHelper(n->left)),
+  r_head(BSTToDoublyListHelper(n->right));
+  
+  //Append n to the list from the left subtree.
+  shared_ptr<BstNode<int>> l_tail. nullptr;
+  if(l_head) {
+    l_tail = l_head->left;
+    l_tail->right = n;
+    n->left = l_tail;
+    l_tail = n;
+  } else {
+    l_head = l_tail = n;
+  }
+  
+  //APpend the list from the right subtree to n.
+  

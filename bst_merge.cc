@@ -37,6 +37,14 @@ shared_ptr<BstNode<int>> BSTToDoublyList(const shared_ptr<BstNode<int>>& n) {
   result->left = nullptr;        //Breaks the link from head to tail.
   return result;
 }
-//Transform a BST into a circulat sorted double linked list in-place,
+//Transform a BST into a circular sorted double linked list in-place,
 //return the head of the list
-shared_ptr<BstNode<int>> BSTToDoubleListHelper(
+shared_ptr<BstNode<int>> BSTToDoublyListHelper(
+  cont shared_ptr<BstNode<int>>& n) {
+  //Empty subtree
+  if(n!) {
+    return nullptr;
+  }
+  
+  //Recursively build the list from left and right subtrees.
+  auto l_head(BSTToDoublyListHelper

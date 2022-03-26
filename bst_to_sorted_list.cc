@@ -25,4 +25,22 @@ HeadAndTail BSTToDoublyLinkedListHelper(const shared_ptr<BstNode<int>>& tree) {
   }
   
   //Recursively builds the list from left and right subtrees.
-  HeadAndTail left = BST
+  HeadAndTail left = BSTToDoublyLinkedListHelper(tree ->left);
+  HeadAndTail right = BSTToDoublyLinkedListHelper(tree->right);
+  
+  //APpends tree to the list from left subtree
+  if(left.tail) {
+    left.tail->right = tree;
+  }
+  tree->left = left.tail;
+  
+  //APpends the list from right subtree to tree.
+  tree->right = right.head;
+  if(right.head) {
+    right.head->left = tree;
+  }
+  
+  return {left.head ? left.head : tree, right.tail ? right.tail : tree);
+}
+  
+    

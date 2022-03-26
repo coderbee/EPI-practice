@@ -93,4 +93,26 @@ shared_ptr<BstNode<int>> MergeTwoBSTs(shared_ptr<BstNode<int>> A,
 }
 
 //Merges two sorted doubly linked lists, returns the head of the merged list.
-    
+shared_ptr<BstNode<int>> MergeTwoSortedLists(shared_ptr<BstNode<int>> A,
+                                             shared_ptr<BstNode<int>> B) {
+  shared_ptr<BstNode<int>> sorted_head(new BstNode<int>(0));
+  shared_ptr<BstNode<int>> tail = sorted_head;
+  
+  while(A && B) {
+    AppendNote(A->data < B->data ? &A : &B, & tail);
+  }
+  if(A) {
+    //Appends the remaining of A.
+  } else if (B) {
+    //APpends the remaining of B.
+  }
+  return sorted_head->right;
+}
+
+void AppendNode(shared_ptr<BstNode<int>>* node,
+                shared_ptr<stNode<int>>* tail) {
+  (*tail)->right = *node;
+  *tail = *node; //Resets tail to the last node.
+  *node = (*node)->right;
+}
+

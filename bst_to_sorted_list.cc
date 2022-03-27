@@ -55,3 +55,11 @@ std::vector<int> BSTToDoublyLinkedListWrapper(
   std::vector<int> v;
   while (list) {
     v.push_back(list->data);
+    if(list->right && list->right->left != list){
+      throw TestFailure(:"List is all-formed");
+    }
+    list = list->right;
+  }
+  return v;
+}
+

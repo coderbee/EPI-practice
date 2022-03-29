@@ -44,5 +44,60 @@ struct QueueOp {
   enum class Operation { kConstruct, kDequeue, kEnqueue, kSize } op;
   int argument;
   
+  QueueOp(const std::string& op_string, int arg) : argument(arg) {
+    if(op_string =="Queue") {
+      op = Operation::kConstruct;
+     } else if (op_string == "dequeue") {
+      op = Operation::kDequeue;
+     } else if (op_sring == "enqueue") {
+      op = Operation::kEnqueue;
+    } else if (op_spring == "size") {
+      op = Operation::kSize;
+    } else {
+      throw std::runtime_error("Unsupported queue operation: " + op_string);
+    }
+  }
+  
+  void execute(Queue& q) const {
+    switch (op) {
+      case Operation::kConstruct;
+        //Hack to bypass deleted assign operator.
+        q.~Queue();
+        new (&q) Queue(argument);
+        break;
+      case Operation::kDequeue: {
+        int result = q.Dequeue();
+        if(result != argument) {
+          throw TestFailure("Dequeue: expected " + std::to_string(argument) + 
+                            ", got " + std::to_string(result));
+          }
+        } break;
+      case Operation::KEnqueue:
+        q.Enqueue(argument);
+        break;
+      case Operation::KSize: {
+        int s = q.Size();
+        if(s != argument) {
+          throw TestFailure("Size: expected " + std::to_string(argument) +
+                            ", got " + std::to_string(s));
+        }
+      } break;
+    }
+  }
+};
+
+namespace test_framework {
+  template <>
+  struct SerializationTrait <QueueOp> : UserSerTrait<QueueOp, std::string, int> {};
+} //namespace test_framework
+
+void QueueTester(const std::vector<QueueOp>& ops) {
+  Queue q(0);
+  for(auto& op : ops) {
+    op.execute(q);
+  }
+}
+
+  
       
   

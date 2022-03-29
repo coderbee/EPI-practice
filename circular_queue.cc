@@ -39,5 +39,10 @@ class Queue {
     int head_ = 0, tail_ = 0, num_queue_elements = 0;
     vector<int> entries_;
 };
+
+struct QueueOp {
+  enum class Operation { kConstruct, kDequeue, kEnqueue, kSize } op;
+  int argument;
+  
       
   

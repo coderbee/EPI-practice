@@ -21,4 +21,12 @@ void DirectedCombinations(int n, int k, int offset,
   }
   
   //Generate remaining conbinations over {offset, ..., n - 1} 
-                          
+  //num_remaining.
+  const int num_remaining = k - size(*partial_combination);
+  for(int i = offset; i <= n && num_remaining <= n - i + 1; ++i) {
+    partial_combination->emplace_back(i);
+    DirectedCombinations(n, k, i + 1, partial_combination, result);
+    partial_combination->pop_back();
+  }
+}
+

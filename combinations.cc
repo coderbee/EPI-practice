@@ -13,5 +13,12 @@ vector<vector<int>> Combinations (int n, int k) {
 }
 
 void DirectedCombinations(int n, int k, int offset, 
-                          vector<int>* partial_combination, 
+                          vector<int>* partial_combination,
+                          vector<vector<int>>* result) {
+  if(size(*partial_combination) == k) {
+    result->emplace_back(*partial_combination);
+    return;
+  }
+  
+  //Generate remaining conbinations over {offset, ..., n - 1} 
                           

@@ -62,6 +62,15 @@ PostingListPtr CreatePostingList(
   PostingListPtr head;
   for (auto it = rbegin(serialized); it !=rend(serialized);
        ++it, list_it = list_it->next) {
+    if(it->jump != -1) {
+      list_it->jump = key_mapping[it->jump_index].get();
+      if(!list_it->jump) throw std::runtime_error("Jumpindex out of range");
+    }
+  }
+  
+  return head;
+}
+
     
     
       

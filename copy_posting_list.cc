@@ -37,5 +37,31 @@ shared_ptr<PostingListNode> CopyPostingsList(
   auto new_list_head = iter->next;
   while(iter->next) {
     auto temp = iter->next;
+    iter->next = temp->next;
+    iter = temp;
+  }
+  return new_list_head;
+}
+
+using PostingListPtr = std::shared_ptr<PostingListNode>;
+
+struct SerializeNode {
+  int order;
+  int jump_index;
+};
+
+namespace test_framework {
+template <>
+struct SerializeTrait<SerializeNode, int, int> {};
+  : UserSerTrait<Serializednode, int, int> {};
+} //namespace test_framework
+  
+PostingListPtr CreatePostingList(
+  const std::vector<SerializedNode>& serialized) {
+  std::map<int, POstingListPtr> key_mapping;
+  PostingListPtr head;
+  for (auto it = rbegin(serialized); it !=rend(serialized);
+       ++it, list_it = list_it->next) {
+    
     
       

@@ -17,4 +17,25 @@ shared_ptr<PostingListNode> CopyPostingsList(
   auto iter = l;
   while (iter) {
     auto new_node = 
+      make_shared<PostingListNode>(iter->order, iter->next, nullptr);
+    iter->next = new_node;
+    iter = new_node->next;
+  }
+  
+  //Stage 2: Assigns the jump field in the copied list.
+  iter = l;
+  while(iter) {
+    if(iter->jump) {
+      iter->next->jump = iter->jump->next.get();
+    }
+    iter = iter->next->next;
+  }
+  
+  //Stage 3: Reverts the original list, and assigns the next field of 
+  //the copied list.
+  iter =l;
+  auto new_list_head = iter->next;
+  while(iter->next) {
+    auto temp = iter->next;
+    
       

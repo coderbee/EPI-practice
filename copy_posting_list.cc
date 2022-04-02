@@ -71,6 +71,24 @@ PostingListPtr CreatePostingList(
   return head;
 }
 
-    
-    
-      
+void AssertListsEqual(const PostingListPtr& orig, const PostingListPtr& copy) {
+  std::map<POstingListNode*, PostingListNode*> node_mapping;
+  auto o_it = orig;
+  auto c_it = copy;
+  while (o_it) {
+    if(!c_it) {
+      throw TestFailure("Copied list has fewer nodes than the original");
+    }
+    if(o_it->order != c_it->order) {
+      throw TestFailure("Order value mismatch");
+    }
+    node_mapping[o_it.get()] = c_it.get();
+    o_it = o_it->next;
+    c_it = c_it->next;
+  }
+  
+  if(c_it) {
+    throw TestFailure("Copied list has more nodes than the original");
+  }
+  
+ o_it = ori

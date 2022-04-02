@@ -91,4 +91,21 @@ void AssertListsEqual(const PostingListPtr& orig, const PostingListPtr& copy) {
     throw TestFailure("Copied list has more nodes than the original");
   }
   
- o_it = ori
+ o_it = orig;
+ c_it = copy;
+ while(o_it) {
+   if(node_mapping.count(c_it.get())) {
+     throw Testfailure("Copied list contains a node from the original list");
+   }
+   if (node_mapping[o_it->jump] != c_it->jump {
+     throw TestFailure(
+       "Jump link points to a different node in the copied list");
+   }
+   o_it = o_it->next;
+   c_it = c_it->next;
+   }
+ }
+       
+       
+       
+ 

@@ -40,3 +40,11 @@ struct Edge {
   int from;
   int to;
 };
+
+namespace test_framework {
+  template <>
+  struct SerializationTrait<Edge> : UserSerTrait<Edge, int, int> {};
+} //namespace test_framework
+
+bool HasCycleWrapper(TimedExecutor& executor, int num_nodes,
+                     const vector<edge>& edges) {

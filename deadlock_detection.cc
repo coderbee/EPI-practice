@@ -48,3 +48,23 @@ namespace test_framework {
 
 bool HasCycleWrapper(TimedExecutor& executor, int num_nodes,
                      const vector<edge>& edges) {
+  vector<GraphVertex> graph;
+  if(num_nodes <= 0) {
+    throw std::runtime_error("Invalid num_nodes value");
+  }
+  graph.reserve(num_nodes);
+  
+  for(int i = 0; i < num_nodes; i++) {
+    graph.push_back(GraphVertex{});
+  }
+  
+  for(const Edge& e : edges) {
+    if (e.from < 0 || e.from >= num_nodes || e.to < 0 || e.to >= num_nodes) {
+      throw std::runtime_error("Invalid vertex index");
+    }
+    graph[e.from].edges.push_back(&graph[e.to]);
+  }
+  
+  return executor.Run([&] { return IsDeadLocked(&graph);});
+}
+

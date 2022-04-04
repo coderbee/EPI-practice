@@ -55,5 +55,14 @@ bool CheckFeasibleHelper(const vector<Jug>& jugs, int L, int H,
   return false;
 }
 
+namespace test_framework {
+  template <>
+  struct SerializationTrait<Jug> : UserSerTrait<Jug, int, int> {};
+} //namespace test_framework
+
+bool operator==(const Jug& lhs, const Jug& rhs) {
+  return lhs.low == rhs.low && lhs.high == rhs.high;
+}
+
  
      

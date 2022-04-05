@@ -20,3 +20,9 @@ string ShortestEquivalentPath(const string& path) {
   }
   
   stringstream ss(path);
+  string token;
+  while (getline(ss, token, '/')) {
+    if(token == "..") {
+      if(empty(path_names) || path_names.back() == "..") {
+        
+  

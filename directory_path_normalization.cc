@@ -24,5 +24,31 @@ string ShortestEquivalentPath(const string& path) {
   while (getline(ss, token, '/')) {
     if(token == "..") {
       if(empty(path_names) || path_names.back() == "..") {
+        path_names.emplace_back(token);
+      } else {
+        if(path_names.back() == "/") {
+          throw invalid_argument("Path Error");
+        }
+        path_names.pop_back();
+      }
+    } else if (token != "." && token != "") {   //Must be a name.
+      path_names.emplace_back(token);
+    }
+  }
+  
+  string result;
+  if(!empty(path_names)) {
+    result = path_names.front();
+    for (int i = 1; i < size(path_names); ++i) {
+      if(i ==1 && result == "/") {  //Avoid starting "//".
+        result += path_names[i];
+      } else {
+        result += "/" + path_names[i];
+      }
+    }
+  }
+  return result;
+}
+
         
   

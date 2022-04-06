@@ -35,4 +35,9 @@ void AdvanceListByK(intk, shared_ptr<ListNode<int>>* L) {
 
 void OverlappingNoCycleListsWrapper(TimedExecutor& executor,
                                     shared_ptr<ListNode<int>> l0,
+                                    shared_ptr<ListNode<int>> l1,
+                                    shared_ptr<ListNode<int>> common) {
+  if(common) {
+    if(l0) {
+      
                                     

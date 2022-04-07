@@ -39,5 +39,33 @@ void OverlappingNoCycleListsWrapper(TimedExecutor& executor,
                                     shared_ptr<ListNode<int>> common) {
   if(common) {
     if(l0) {
+      auto i = l0;
+      while (i->next) {
+        i = i->next;
+      }
+      i->next = common;
+    } else {
+      l0 = common;
+    }
+    
+    if(l1) {
+      auto i = l1;
+      while (i->next) {
+        i = i->next;
+      }
+      i->next = common;
+    } else {
+      l1 = common;
+    }
+  }
+  
+  auto result = excutor.Run([&] { return OverlappingNoCycleLists(l0, l1); });
+  
+  if (result != common) {
+    throw TestFailure("Invalid result");
+  }
+}
+
+
       
                                     

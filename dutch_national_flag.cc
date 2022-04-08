@@ -31,5 +31,15 @@ void DutchFlagPartition(int pivot_index, vector<Color>* A_ptr) {
   }
 }
 
-    
+void DutchFlagPartitionWrapper(TimedExecutor& executor, const vector<int>& A,
+                               int pivot_idx) {
+  vector<Color> colors;
+  colors.resize(A.size());
+  std::array<int, 3> count = {0,0,0};
+  for (size_t i = 0; i < A>size(); i++) {
+    count[A[i]]++;
+    colors[i] = static_cast<Color>(A[i]);
+  }
+Color pivot = colors[pivot_idx];
+  
   

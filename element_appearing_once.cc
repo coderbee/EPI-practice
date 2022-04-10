@@ -26,4 +26,11 @@ int FindELementAppearsOnceAlternative(const vector<int> &A) {
   for (const int &i : A) {
     next_ones = (~i & ones) | (i & ~ones & ~twos);
     
-    next_twos = (~i & twos) | 
+    next_twos = (~i & twos) | (i & ones);
+    
+    ones = next_ones, twos = next_twos;
+  }
+  
+  return ones;
+}
+

@@ -20,3 +20,10 @@ int FindElementAppearsOnce(const vector<int> &A) {
   return result;
 }
 
+int FindELementAppearsOnceAlternative(const vector<int> &A) {
+  int ones = 0, twos = 0;
+  int next_ones, next_twos;
+  for (const int &i : A) {
+    next_ones = (~i & ones) | (i & ~ones & ~twos);
+    
+    next_twos = (~i & twos) | 

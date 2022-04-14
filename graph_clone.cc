@@ -29,3 +29,20 @@ GraphVertex* CloneGraph(GraphVertex* graph) {
     q.pop();
     for (GraphVertex* e : v->edges) {
       // Try to copy vertex e.
+      if(vertex_map.emplace(e, new GraphVertes({e->label})).second) {
+        q.emplace(e);
+      }
+      // Copy edge.
+      vertex_map[v]->edges.emplace_back(vertes_map[e]);
+    }
+  }
+  return vertex_map[graph];
+}
+
+vector<int> CopyLabels(const vector<GraphVertex*>& edges) {
+  vector<int> labels;
+  transform(begin(edges), end(edges), back_inserter(labels),
+            [](const auto& e) { return e->label;});
+  return labels;
+}
+

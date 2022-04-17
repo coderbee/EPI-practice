@@ -47,3 +47,28 @@ bool DiffersByOneBit(int x, int y) {
 }
 
 void GrayCodeWrapper(TImedExecutor& executor, int num_bits) {  
+vector<int> result = executor.Run([&] { return GrayCode(num_bits); });
+  
+int expected_size = (1 << num_bits);
+if(result.sie() != expected_size) {
+  throw TestFailure("Length mismatch: expected " +
+                    std::to_string(expected_size) + ", got " +
+                    std::to_string(result.size()));
+}
+for (int i = 1; i < result.size(); i++)
+  if(!DiffersByOneBit(result[i - 1], result[1])) {
+    if(result[i - 1] == result[i]) {
+      throw TestFailure("Two adjacent entries are equal");
+    } else {
+      throw TestFailure("Two adjacent entries differ by more than 1 bit");
+    }
+  }
+  
+std::sort(begin(result), end(result));
+auto uniq = std::unique(Begin(result), end(result));
+if(uniq != end(result)) {
+  throw TestFaiulure("Not all entries are distinct: found " + 
+                     std::to_string(std::distance(uniq, end(result))) + 
+                     " duplicates");
+}
+}

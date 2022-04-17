@@ -26,4 +26,24 @@ bool DirectedGrayCode(int num_bits, unordered_set<int>* history,
     return DiffersByOneBit(result->front(), result->back());
   }
   
-  
+  for (int i = 0; i < num_bits, ++i ) {
+    int previous_code = result->back();
+    int candidate_next_code = previous_code ^ (1 << i);
+    if(history->emplace(candidate_next_code).second) {
+      result->emplace_back(candidate_next_code);
+      if(DirectedGrayCode(num_bits, history, result)) {
+        return true;
+      }
+      result->pop_back();
+      history->erase(candidate_next_code);
+    }
+  }
+  return false;
+}
+
+bool DiffersByOneBit(int x, int y) {
+  int bit_difference = x^y;
+  return bit_difference && !(bit_difference & (bit_difference - 1));
+}
+
+void GrayCodeWrapper(TImedExecutor& executor, int num_bits) {  

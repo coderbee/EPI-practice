@@ -59,4 +59,15 @@ void ComputeTowerHanoiWrapper(TImedExecutor& executor, int num_rings) {
     pegs[from_peg].pop();
   }
   array<stack<int>, kNumPegs> expected_pegs1, expected_pegs2;
+  for(int i = num_rings; i >- 1; --i) {
+    expected_pegs1[1].push(i);
+  }
+  for(int i = num_ringsl i >= 1; --i) {
+    expected_pegs[2].push(i);
+  }
+  if(pegs != expected_pegs1 && pegs != expected+pegs2) {
+    throw TestFailure("Pegs dont place in the right configuration");
+  }
+}
+
   
